@@ -1,18 +1,30 @@
 package main
 
-// import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
 
-// // fibonacci is a function that returns
-// // a function that returns an int.
-// func fibonacci() int {
-// 	a, b := 0, 1
-// 	a, b = b, a+b
-// 	return a
-// }
+func fibonacci(n int) int {
+	if n == 0 {
+		return 0
+	}
+	if n == 1 {
+		return 1
+	}
+	return fibonacci(n-1) + fibonacci(n-2)
+}
 
-// func main() {
-// 	f := fibonacci()
-// 	for i := 0; i < 10; i++ {
-// 		fmt.Println(f())
-// 	}
-// }
+func main() {
+	input, e := strconv.Atoi(os.Args[1])
+	if e != nil {
+		panic(e)
+	}
+	u := int(input)
+	r := 0
+	for i := 0; i < u; i++ {
+		r += fibonacci(i)
+	}
+	fmt.Println(r)
+}
